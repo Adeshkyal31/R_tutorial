@@ -20,5 +20,11 @@ bdays<-function(n){
   days<-sample(c(1:365),n,replace = TRUE)
   any(duplicated(days))
 }
-results<-replicate(b,bdays(50))
+compute<-function(n){
+results<-replicate(b,bdays(n))
 mean(results)
+}
+n<-seq(1,175)
+prob<-sapply(n, compute)
+library(tidyverse)
+qplot(n,prob)
